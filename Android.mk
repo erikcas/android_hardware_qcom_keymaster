@@ -3,11 +3,7 @@ LOCAL_PATH := $(call my-dir)
 ifneq ($(filter msm8960 msm8974 msm8226 msm8084,$(TARGET_BOARD_PLATFORM)),)
 
 keymaster-def := -fvisibility=hidden -Wall
-ifeq ($(TARGET_BOARD_PLATFORM),msm8084)
-keymaster-def += -D_ION_HEAP_MASK_COMPATIBILITY_WA
-endif
-
-ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+ifneq ($(filter msm8084 msm8974,$(TARGET_BOARD_PLATFORM)),)
 keymaster-def += -D_ION_HEAP_MASK_COMPATIBILITY_WA
 endif
 
